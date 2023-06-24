@@ -1,12 +1,20 @@
 package com.mooddiary.data
 
 import android.content.Context
+import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import androidx.room.migration.Migration
+import com.mooddiary.model.MoodDiary
+import com.mooddiary.model.MoodDiaryConverter
 
-abstract class MoodDiaryDatabase: RoomDatabase() {
+@Database(entities = [MoodDiary::class], version = 3)
+@TypeConverters(MoodDiaryConverter::class)
+abstract class MoodDiaryDatabase : RoomDatabase() {
     companion object {
         const val databaseName = "Mood Diary Database"
+
         @Volatile
         var instance: MoodDiaryDatabase? = null
         fun getInstance(context: Context): MoodDiaryDatabase {
@@ -15,9 +23,11 @@ abstract class MoodDiaryDatabase: RoomDatabase() {
                     context.applicationContext,
                     MoodDiaryDatabase::class.java,
                     databaseName
-                ).build()
+                ).fallbackToDestructiveMigration()
+                    .build()
             }
         }
     }
+
     abstract fun getDao(): MoodDiaryDao
 }

@@ -5,6 +5,8 @@ import kotlinx.coroutines.flow.Flow
 
 abstract class MoodDiaryBaseRepository {
     abstract fun getAllDiary(): Flow<List<MoodDiary>>
-    abstract fun insertDiary(diary: MoodDiary)
-    abstract fun deleteDiary(diary: MoodDiary)
+    abstract suspend fun insertDiary(diary: MoodDiary)
+    abstract suspend fun deleteDiary(diary: MoodDiary)
+
+    abstract suspend fun getDiary(diaryId: Long): MoodDiary
 }

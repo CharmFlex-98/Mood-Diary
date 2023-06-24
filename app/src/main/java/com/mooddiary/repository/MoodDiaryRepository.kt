@@ -9,11 +9,15 @@ class MoodDiaryRepository(private val _dao: MoodDiaryDao): MoodDiaryBaseReposito
         return _dao.getAllDiary()
     }
 
-    override fun insertDiary(diary: MoodDiary) {
+    override suspend fun insertDiary(diary: MoodDiary) {
         _dao.insertDiary(diary)
     }
 
-    override fun deleteDiary(diary: MoodDiary) {
+    override suspend fun deleteDiary(diary: MoodDiary) {
         _dao.deleteDiary(diary)
+    }
+
+    override suspend fun getDiary(diaryId: Long): MoodDiary {
+        return _dao.getDiary(diaryId)
     }
 }

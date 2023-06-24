@@ -13,8 +13,11 @@ interface MoodDiaryDao {
     fun getAllDiary(): Flow<List<MoodDiary>>
 
     @Insert
-    fun insertDiary(diary: MoodDiary)
+    suspend fun insertDiary(diary: MoodDiary)
+
+    @Query("SELECT * FROM mooddiary WHERE id=:id")
+    suspend fun getDiary(id: Long): MoodDiary
 
     @Delete
-    fun deleteDiary(diary: MoodDiary)
+    suspend fun deleteDiary(diary: MoodDiary)
 }

@@ -1,14 +1,17 @@
-package com.mooddiary.ui
+package com.mooddiary.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.AdapterView.OnItemClickListener
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.mooddiary.databinding.MoodDiaryItemBinding
 import com.mooddiary.model.MoodDiary
 
-class MoodDiaryListAdapter: ListAdapter<MoodDiary, MoodDiaryListAdapter.MoodDiaryViewHolder>(diffUtilCB) {
+class MoodDiaryListAdapter(private val _onItemClicked: (MoodDiaryListAdapter, Int) -> Unit): ListAdapter<MoodDiary, MoodDiaryListAdapter.MoodDiaryViewHolder>(
+    diffUtilCB
+) {
 
 
     companion object {
@@ -32,10 +35,16 @@ class MoodDiaryListAdapter: ListAdapter<MoodDiary, MoodDiaryListAdapter.MoodDiar
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoodDiaryViewHolder {
         val binding: MoodDiaryItemBinding = MoodDiaryItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MoodDiaryViewHolder(binding)
+        val holder = MoodDiaryViewHolder(binding)
+        binding.root.setOnClickListener {
+            _onItemClicked(this, holder.adapterPosition)
+        }
+
+        return holder
     }
 
     override fun onBindViewHolder(holder: MoodDiaryViewHolder, position: Int) {
+        holder.adapterPosition
         holder.bind(currentList[position])
     }
 }

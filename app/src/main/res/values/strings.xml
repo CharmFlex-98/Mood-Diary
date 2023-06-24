@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Mood Diary</string>
+    <string name="fab_content_desc">Add new diary</string>
+    <string name="load_data_error">Error loading data</string>
+    <string name="diary_title_hint">Title</string>
+    <string name="diary_content">Content</string>
+    <string name="diary_content_hint">Content</string>
+    <string name="change_date_button_text">Change</string>
+    <string name="date_hint">Date</string>
+    <string name="submit_button_text">Submit</string>
+    <string name="home">Home</string>
+    <string name="Stat">Statistic</string>
 </resources>
