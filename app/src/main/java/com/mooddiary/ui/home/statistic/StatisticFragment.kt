@@ -1,4 +1,4 @@
-package com.mooddiary.ui.statistic
+package com.mooddiary.ui.home.statistic
 
 import android.os.Bundle
 import android.view.LayoutInflater

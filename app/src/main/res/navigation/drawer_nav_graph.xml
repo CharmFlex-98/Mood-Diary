@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph"
+    android:id="@+id/top_level_nav_graph"
     app:startDestination="@id/homeFragment">
 
     <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.mooddiary.ui.setting.SettingFragment"
+        android:label="Setting" />
+    <fragment
         android:id="@+id/homeFragment"
         android:name="com.mooddiary.ui.home.HomeFragment"
-        android:label="HomeFragment" />
-    <fragment
-        android:id="@+id/statisticFragment"
-        android:name="com.mooddiary.ui.statistic.StatisticFragment"
-        android:label="StatisticFragment" />
+        android:label="Home" />
 </navigation>

@@ -1,4 +1,4 @@
-package com.mooddiary.ui.new_edit_page
+package com.mooddiary.ui.home.new_edit_page
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

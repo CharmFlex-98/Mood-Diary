@@ -1,4 +1,4 @@
-package com.mooddiary.ui.home
+package com.mooddiary.ui.home.Summary
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

@@ -10,4 +10,8 @@
     <string name="submit_button_text">Submit</string>
     <string name="home">Home</string>
     <string name="Stat">Statistic</string>
+    <string name="openDrawerDesc">Open Drawer</string>
+    <string name="closeDrawerDesc">Close Drawer</string>
+    <string name="setting">Setting</string>
+    <string name="summary">Summary</string>
 </resources>
