@@ -1,7 +1,9 @@
 package com.mooddiary.ui.home.Summary
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
@@ -29,6 +31,7 @@ class MoodDiaryListAdapter(private val _onItemClicked: (MoodDiaryListAdapter, In
         fun bind(moodDiary: MoodDiary) {
             _binding.date.text = moodDiary.date.toString()
             _binding.title.text = moodDiary.title
+            _binding.ratingBar.rating = moodDiary.moodIndex.toFloat()
         }
     }
 

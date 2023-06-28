@@ -63,6 +63,7 @@ class NewEditFragment : DialogFragment() {
         }
         _binding.titleField.addTextChangedListener(NewEditTextWatcher { _viewModel.setTitle(it) })
         _binding.contentField.addTextChangedListener(NewEditTextWatcher { _viewModel.setContent(it) })
+        _binding.ratingBar.setOnRatingBarChangeListener {_, value, _ -> _viewModel.setMoodRating(value)}
         _binding.submitButton.setOnClickListener {
             _viewModel.createDiary()
             dismiss()
@@ -77,8 +78,6 @@ class NewEditFragment : DialogFragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 _viewModel.uiState.collect {
                     val currentTime = LocalDate.now()
-                    _binding.titleField.setText(it.title)
-                    _binding.contentField.setText(it.content)
                     _binding.dateField.text = (it.date ?: currentTime).toFormattedString()
                 }
             }

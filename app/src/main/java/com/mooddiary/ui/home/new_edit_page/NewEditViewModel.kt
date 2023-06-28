@@ -16,7 +16,8 @@ import java.time.LocalDateTime
 data class NewEditUIState(
     val title: String? = null,
     val content: String? = null,
-    val date: LocalDate? = null
+    val date: LocalDate? = null,
+    val moodRating: Float? = null
 )
 
 
@@ -42,6 +43,12 @@ class NewEditViewModel(private val _repository: MoodDiaryRepository) : ViewModel
         )
     }
 
+    fun setMoodRating(rating: Float) {
+        _uiState.value = _uiState.value.copy(
+            moodRating = rating
+        )
+    }
+
     fun createDiary() {
         if (isInputValid()) {
             val data = uiState.value
@@ -51,7 +58,7 @@ class NewEditViewModel(private val _repository: MoodDiaryRepository) : ViewModel
                         title = data.title!!,
                         content = data.content!!,
                         date = data.date!!,
-                        moodIndex = 8.0
+                        moodIndex = data.moodRating!!.toDouble()
                     )
                 )
             }
@@ -68,6 +75,6 @@ class NewEditViewModel(private val _repository: MoodDiaryRepository) : ViewModel
     }
 
     private fun isInputValid(): Boolean {
-        return _uiState.value.date != null && _uiState.value.title != null && _uiState.value.content != null
+        return _uiState.value.date != null && _uiState.value.title != null && _uiState.value.content != null && _uiState.value.moodRating != null
     }
 }

@@ -14,4 +14,6 @@
     <string name="closeDrawerDesc">Close Drawer</string>
     <string name="setting">Setting</string>
     <string name="summary">Summary</string>
+    <string name="mood_star">Star amount based on mood level</string>
+    <string name="mood_rating_text">Mood</string>
 </resources>
