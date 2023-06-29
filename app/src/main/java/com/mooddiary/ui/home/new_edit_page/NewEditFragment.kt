@@ -84,6 +84,12 @@ class NewEditFragment : DialogFragment() {
                 _viewModel.uiState.collect {
                     val currentTime = LocalDate.now()
                     _binding.dateField.text = (it.date ?: currentTime).toFormattedString()
+                    if (it.title != _binding.titleField.text.toString()) {
+                        _binding.titleField.setText(it.title)
+                    }
+                    if (it.content != _binding.contentField.text.toString()) {
+                        _binding.contentField.setText(it.content)
+                    }
                 }
             }
         }
