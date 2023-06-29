@@ -5,4 +5,13 @@
     <attr name="colorCustomColor1Container" format="color" />
     <attr name="colorOnCustomColor1Container" format="color" />
     <attr name="harmonizeCustomColor1" format="boolean" />
+
+    <!--Mood rater-->
+    <declare-styleable name="ValueSelector">
+        <attr name="minValue" format="float" />
+        <attr name="maxValue" format="float" />
+        <attr name="step" format="float" />
+    </declare-styleable>
 </resources>
+
+

@@ -16,4 +16,8 @@
     <string name="summary">Summary</string>
     <string name="mood_star">Star amount based on mood level</string>
     <string name="mood_rating_text">Mood</string>
+    <string name="mood_rater_adder_desc">Mood rater adder</string>
+    <string name="mood_rater_remover_desc">Mood rater remover</string>
+    <string name="value_adder_desc">Add value</string>
+    <string name="value_remover_desc">value remover</string>
 </resources>

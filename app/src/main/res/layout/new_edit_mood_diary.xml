@@ -63,21 +63,14 @@
                 android:textStyle="bold"
                 android:layout_height="wrap_content"
                 android:text="@string/mood_rating_text" />
-            <FrameLayout
+            <com.mooddiary.ui.custom.ValueSelector
+                android:id="@+id/mood_value_selector"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="wrap_content">
-                <RatingBar
-                    android:id="@+id/rating_bar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingVertical="8dp"
-                    android:layout_gravity="center"
-                    android:rating="5"
-                    android:numStars="5"
-                    android:stepSize="0.5"
-                    />
-            </FrameLayout>
+                android:layout_height="match_parent"
+                app:minValue="0"
+                app:maxValue="5"
+                app:step="0.5"/>
 
         </LinearLayout>
 
