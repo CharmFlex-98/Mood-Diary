@@ -25,9 +25,12 @@ class ValueSelector @JvmOverloads constructor(
     private var minValue = DEFAULT_MIN_VAL
     private var maxValue = DEFAULT_MAX_VAL
     private var step = DEFAULT_STEP
-    private var _value = DEFAULT_VAL
-    val value: Float
-        get() = _value
+    private var value = DEFAULT_VAL
+        set(value) {
+            field = value
+            binding.valueViewer.text = value.toString()
+            invalidateView()
+        }
     private var _valueChangedListener: OnValueChangedListener<Float>? = null
 
     init {
@@ -51,15 +54,15 @@ class ValueSelector @JvmOverloads constructor(
     private fun setupViews() {
         binding.valueSelectorAdder.setOnClickListener {
             if (value + step <= maxValue) {
-                _value += step
-                binding.valueViewer.text = _value.toString()
+                value += step
+                binding.valueViewer.text = value.toString()
                 _valueChangedListener?.let { it(value) }
             }
         }
         binding.valueSelectorRemover.setOnClickListener {
             if (value - step >= minValue) {
-                _value -= step
-                binding.valueViewer.text = _value.toString()
+                value -= step
+                binding.valueViewer.text = value.toString()
                 _valueChangedListener?.let { it(value) }
             }
         }
@@ -67,5 +70,14 @@ class ValueSelector @JvmOverloads constructor(
 
     fun setOnValueChangedListener(listener: OnValueChangedListener<Float>) {
         _valueChangedListener = listener
+    }
+
+    fun setDefaultValue(defaultValue: Float) {
+        value = defaultValue
+    }
+
+    private fun invalidateView() {
+        invalidate()
+        requestLayout()
     }
 }

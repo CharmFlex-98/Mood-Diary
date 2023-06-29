@@ -63,8 +63,11 @@ class NewEditFragment : DialogFragment() {
         }
         _binding.titleField.addTextChangedListener(NewEditTextWatcher { _viewModel.setTitle(it) })
         _binding.contentField.addTextChangedListener(NewEditTextWatcher { _viewModel.setContent(it) })
-        _binding.moodValueSelector.setOnValueChangedListener {
-            _viewModel.setMoodRating(it)
+        _binding.moodValueSelector.apply {
+            setDefaultValue(4f)
+            setOnValueChangedListener {
+                _viewModel.setMoodRating(it)
+            }
         }
         _binding.submitButton.setOnClickListener {
             _viewModel.createDiary()
@@ -101,7 +104,6 @@ class NewEditFragment : DialogFragment() {
         }
 
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            println("text changed")
             onTextChangedCB(p0.toString())
         }
 

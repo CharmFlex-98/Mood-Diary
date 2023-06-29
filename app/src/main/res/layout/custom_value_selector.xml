@@ -5,12 +5,11 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
     <ImageButton
-        android:id="@+id/value_selector_adder"
+        android:id="@+id/value_selector_remover"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_add"
-        android:contentDescription="@string/value_adder_desc" />
-
+        android:src="@drawable/ic_minus"
+        android:contentDescription="@string/value_remover_desc" />
     <TextView
         android:id="@+id/value_viewer"
         android:layout_width="0dp"
@@ -20,11 +19,12 @@
         android:gravity="center"
         tools:text="5"/>
     <ImageButton
-        android:id="@+id/value_selector_remover"
+        android:id="@+id/value_selector_adder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_minus"
-        android:contentDescription="@string/value_remover_desc" />
+        android:src="@drawable/ic_add"
+        android:contentDescription="@string/value_adder_desc" />
+
 
 
 </LinearLayout>
