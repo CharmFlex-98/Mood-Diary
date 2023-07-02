@@ -13,8 +13,8 @@
             android:id="@+id/new_edit_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:title="New Diary"
-            app:navigationIcon="@drawable/ic_arrow_back"/>
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:title="New Diary" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -51,8 +51,8 @@
         android:orientation="horizontal"
         android:padding="5dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
@@ -73,8 +73,23 @@
                 android:valueTo="5"
                 android:stepSize="0.5"/>
 
-        </LinearLayout>
+        <com.mooddiary.ui.custom.ValueSelector
+            android:id="@+id/mood_value_selector"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="50dp"
+            app:maxValue="5"
+            app:minValue="0"
+            app:step="0.5" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp">
         <TextView
             android:id="@+id/date_field"
             android:layout_width="0dp"
@@ -94,8 +109,9 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:paddingBottom="30dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:paddingBottom="30dp">
+
         <Button
             android:id="@+id/submit_button"
             android:layout_width="wrap_content"
@@ -103,7 +119,6 @@
             android:layout_gravity="bottom|center_horizontal"
             android:text="@string/submit_button_text" />
     </FrameLayout>
-
 
 
 </LinearLayout>

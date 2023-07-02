@@ -81,6 +81,12 @@ class NewEditFragment : DialogFragment() {
                 _viewModel.uiState.collect {
                     val currentTime = LocalDate.now()
                     _binding.dateField.text = (it.date ?: currentTime).toFormattedString()
+                    if (it.title != _binding.titleField.text.toString()) {
+                        _binding.titleField.setText(it.title)
+                    }
+                    if (it.content != _binding.contentField.text.toString()) {
+                        _binding.contentField.setText(it.content)
+                    }
                 }
             }
         }
@@ -101,7 +107,6 @@ class NewEditFragment : DialogFragment() {
         }
 
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            println("text changed")
             onTextChangedCB(p0.toString())
         }
 
