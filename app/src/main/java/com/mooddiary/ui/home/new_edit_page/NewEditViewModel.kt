@@ -65,12 +65,31 @@ class NewEditViewModel(private val _repository: MoodDiaryRepository) : ViewModel
         }
     }
 
+    fun updateDiary(diaryId: Long) {
+        if (isInputValid()) {
+            val data = uiState.value
+            viewModelScope.launch(Dispatchers.IO) {
+                _repository.updateDiary(
+                    MoodDiary(
+                        id = diaryId,
+                        title = data.title!!,
+                        content = data.content!!,
+                        date = data.date!!,
+                        moodIndex = data.moodRating!!.toDouble()
+                    )
+                )
+            }
+        }
+    }
+
+
     fun setDiaryData(diaryId: Long) {
         viewModelScope.launch(Dispatchers.IO) {
             val diary = _repository.getDiary(diaryId)
             setTitle(diary.title)
             setContent(diary.content)
             setDate(diary.date)
+            setMoodRating(diary.moodIndex.toFloat())
         }
     }
 

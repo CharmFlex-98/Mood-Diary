@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -18,10 +17,8 @@ import com.mooddiary.application.MoodDiaryApplication
 import com.mooddiary.databinding.NewEditMoodDiaryBinding
 import com.mooddiary.utils.MDViewModelProviderFactory
 import com.mooddiary.utils.toFormattedString
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.time.LocalDate
-import java.time.LocalDateTime
 
 class NewEditFragment : DialogFragment() {
     companion object {
@@ -35,6 +32,7 @@ class NewEditFragment : DialogFragment() {
             return res
         }
     }
+
     private lateinit var _binding: NewEditMoodDiaryBinding
     private val _viewModel: NewEditViewModel by viewModels {
         MDViewModelProviderFactory {
@@ -67,12 +65,13 @@ class NewEditFragment : DialogFragment() {
             if (fromUser) _viewModel.setMoodRating(value)
         }
         _binding.submitButton.setOnClickListener {
-            _viewModel.createDiary()
+            if (isEdit()) _viewModel.updateDiary(requireArguments().getLong(argumentName)) else _viewModel.createDiary()
             dismiss()
         }
+        initStateChangedListeners()
 
         if (isEdit()) populateInitialData()
-        initStateChangedListeners()
+
     }
 
     private fun initStateChangedListeners() {
@@ -81,12 +80,14 @@ class NewEditFragment : DialogFragment() {
                 _viewModel.uiState.collect {
                     val currentTime = LocalDate.now()
                     _binding.dateField.text = (it.date ?: currentTime).toFormattedString()
-                    if (it.title != _binding.titleField.text.toString()) {
-                        _binding.titleField.setText(it.title)
-                    }
-                    if (it.content != _binding.contentField.text.toString()) {
-                        _binding.contentField.setText(it.content)
-                    }
+                    if (it.title != _binding.titleField.text.toString()) _binding.titleField.setText(
+                        it.title
+                    )
+                    if (it.content != _binding.contentField.text.toString()) _binding.contentField.setText(
+                        it.content
+                    )
+                    if (it.moodRating != _binding.moodValueSelector.value) _binding.moodValueSelector.value =
+                        it.moodRating ?: 0f
                 }
             }
         }
@@ -96,10 +97,12 @@ class NewEditFragment : DialogFragment() {
         return arguments != null
     }
 
+
     private fun populateInitialData() {
         val diaryId = requireArguments().getLong(argumentName)
         _viewModel.setDiaryData(diaryId)
     }
+
 
     private class NewEditTextWatcher(private val onTextChangedCB: (String) -> Unit) : TextWatcher {
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {

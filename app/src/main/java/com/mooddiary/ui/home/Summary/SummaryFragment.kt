@@ -58,20 +58,15 @@ class SummaryFragment: Fragment() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect {
-                    println("list is $it")
                     if (it.isLoading) {
-                        println("is Loading")
                         diaryLoading()
                     } else if (it.errorMessage != null) {
                         diaryError(it.errorMessage)
-                        println("is error")
                     } else if (it.moodDiaryList.isEmpty()) {
                         diaryError("No data")
-                        println("is no data")
                     } else {
                         _adapter!!.submitList(it.moodDiaryList)
                         diaryLoadSuccess()
-                        println("is loaded")
                     }
                 }
             }

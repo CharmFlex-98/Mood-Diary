@@ -20,4 +20,8 @@ class MoodDiaryRepository(private val _dao: MoodDiaryDao): MoodDiaryBaseReposito
     override suspend fun getDiary(diaryId: Long): MoodDiary {
         return _dao.getDiary(diaryId)
     }
+
+    override suspend fun updateDiary(diary: MoodDiary) {
+        return _dao.updateDiary(diary)
+    }
 }

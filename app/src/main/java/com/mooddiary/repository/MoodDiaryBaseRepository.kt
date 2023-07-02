@@ -9,4 +9,6 @@ abstract class MoodDiaryBaseRepository {
     abstract suspend fun deleteDiary(diary: MoodDiary)
 
     abstract suspend fun getDiary(diaryId: Long): MoodDiary
+
+    abstract suspend fun updateDiary(diary: MoodDiary)
 }
