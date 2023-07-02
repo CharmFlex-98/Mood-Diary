@@ -63,8 +63,8 @@ class NewEditFragment : DialogFragment() {
         }
         _binding.titleField.addTextChangedListener(NewEditTextWatcher { _viewModel.setTitle(it) })
         _binding.contentField.addTextChangedListener(NewEditTextWatcher { _viewModel.setContent(it) })
-        _binding.moodValueSelector.setOnValueChangedListener {
-            _viewModel.setMoodRating(it)
+        _binding.moodValueSelector.addOnChangeListener { _, value, fromUser ->
+            if (fromUser) _viewModel.setMoodRating(value)
         }
         _binding.submitButton.setOnClickListener {
             _viewModel.createDiary()
