@@ -55,7 +55,7 @@ class SummaryFragment: Fragment() {
         _binding.fab.setOnClickListener {
             NewEditFragment().show(childFragmentManager, NewEditFragment.id)
         }
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiState.collect {
                     if (it.isLoading) {

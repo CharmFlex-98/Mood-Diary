@@ -20,4 +20,5 @@
     <string name="mood_rater_remover_desc">Mood rater remover</string>
     <string name="value_adder_desc">Add value</string>
     <string name="value_remover_desc">value remover</string>
+    <string name="chart_y_axis_title">hello</string>
 </resources>

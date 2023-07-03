@@ -52,6 +52,7 @@ dependencies {
     def arch_version = "2.2.0"
     def fragment_version = "1.5.7"
     def nav_version = "2.6.0"
+    def chart_lib_version = "1.6.5"
 
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
@@ -81,4 +82,8 @@ dependencies {
     // Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    // Chart library
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
 }
